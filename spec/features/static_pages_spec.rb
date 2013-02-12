@@ -11,10 +11,15 @@ describe "Static pages" do
       expect(page).to have_selector 'h1', text: 'Sample App'
     end
 
-    it "should have the title 'Home'" do
+    it "should have the base title" do
       visit static_pages_home_path
       expect(page).to have_selector 'title',
-        text: "#{base_title} | Home"
+        text: "#{base_title}"
+    end
+
+    it "should not have a custom page title" do
+      visit static_pages_home_path
+      expect(page).to_not have_selector 'title', text: '| Home'
     end
   end
 
